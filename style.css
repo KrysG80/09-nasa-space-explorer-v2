@@ -1,24 +1,21 @@
-/* Global reset & box sizing */
+/* === Base Reset === */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Base page styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
   padding: 20px;
 }
 
-/* Centered container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Header */
 .site-header {
   display: flex;
   align-items: center;
@@ -34,13 +31,13 @@ h1 {
   color: #212121;
 }
 
-/* Logo */
 .logo {
-  width: 140px;
+  max-width: 160px;
+  width: 100%;
+  height: auto;
   margin-right: 15px;
 }
 
-/* Date‐picker & button row */
 .filters {
   display: flex;
   flex-direction: column;
@@ -50,95 +47,102 @@ h1 {
   padding: 0 20px;
 }
 
-/* Inputs and buttons */
-input[type="date"],
 button {
   font-family: Arial, sans-serif;
   font-weight: normal;
-  color: #666;
+  color: #333;
   padding: 10px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #d3d3d3;
+  cursor: pointer;
   font-size: 16px;
-  line-height: 1.4;
-  width: 100%;
 }
 
-/* Button specific */
-button {
-  background-color: #d3d3d3;
-  color: black;
-  cursor: pointer;
-}
 button:hover {
   background-color: #bfbfbf;
 }
 
-/* Stack horizontally on wider screens */
 @media (min-width: 600px) {
   .filters {
     flex-direction: row;
     padding: 0;
   }
-  
-  input[type="date"],
+
   button {
     width: auto;
   }
 }
 
-/* Gallery flex container */
+/* === Gallery Grid === */
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
-  justify-content: center;
 }
 
-/* Gallery items */
-.gallery-item {
-  flex: 1 1 100%;  /* full width by default */
-  min-width: 280px;
-  max-width: 500px;
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.card {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Three columns on wider screens */
-@media (min-width: 1000px) {
-  .gallery-item {
-    flex: 0 1 31%;
-  }
+.card-media {
+  position: relative;
+  aspect-ratio: 16 / 9; /* change to 4/3 or 1/1 for different thumbnail shape */
+  overflow: hidden;
 }
 
-.gallery-item img {
+.card-media img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 4px;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* crops large images cleanly */
 }
 
-.gallery-item p {
-  margin-top: 10px;
-  padding: 5px;
+.card-info {
+  padding: 12px 14px 14px;
+}
+
+.card-info h3 {
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+}
+
+.card-meta {
+  font-size: 0.9rem;
+  color: #667085;
+  margin: 0;
+}
+
+.play-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-radius: 999px;
   font-size: 14px;
+  pointer-events: none;
 }
 
-/* Placeholder content */
-.placeholder {
-  flex: 1 1 100%;
-  text-align: center;
-  padding: 40px;
-  color: #666;
+/* === Modal === */
+.modal-body img,
+.modal-video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
 }
 
-.placeholder-icon {
-  font-size: 48px;
-  margin-bottom: 20px;
+.modal-video {
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 8px;
 }
